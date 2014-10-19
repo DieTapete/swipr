@@ -1,0 +1,29 @@
+{
+  "name": "swipr",
+  "version": "0.0.0",
+  "authors": [
+    "Henner Woehler"
+  ],
+  "description": "Yet another swipe gallery plugin for jquery..",
+  "main": "jquery.swipr.js",
+  "keywords": [
+    "jquery",
+    "plugin",
+    "swipr",
+    "gallery"
+  ],
+  "dependencies": {
+    "hammerjs": "~2.0.4",
+    "tweenlite": "~1.11.5",
+    "gsap": "~1.14.1"
+  },
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "components",
+    "test",
+    "tests"
+  ]
+}

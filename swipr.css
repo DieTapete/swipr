@@ -1,0 +1,19 @@
+.swipr{
+	width:400px;
+	height:400px;
+}
+
+.swipr-window{
+	position:relative;
+	border:1px solid black;
+	overflow:hidden;
+	/*background-color:green;*/
+}
+
+.swipr-slide{
+	/*border: 1px solid red;*/
+	position: absolute;
+	-moz-user-select:none;
+	user-select:none;
+	pointer-events: none
+}

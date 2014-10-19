@@ -1,0 +1,69 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+        <title>Swipr Example</title>
+        <meta name="description" content="">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale = 1.0, user-scalable = no">
+        <meta name="msapplication-tap-highlight" content="no" />
+
+        <link rel="stylesheet" href="swipr.css">
+    </head>
+    <body>
+        <div id="container">
+                <div class="swipr">
+                    <img src="http://tapwork.de/img/Content/work/cgn2013_1.png" alt="">
+                    <img src="http://tapwork.de/img/Content/work/showcase1.jpg" alt="">
+                    <img src="http://tapwork.de/img/Content/work/mplayr1.jpg" alt="">
+                </div>
+        </div>
+
+        
+        <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script src="components/hammerjs/hammer.js"></script>
+        <script src="components/gsap/src/minified/TweenLite.min.js"></script>
+        <script src="components/gsap/src/minified/plugins/CSSPlugin.min.js"></script>
+        <script src="components/gsap/src/minified/easing/EasePack.min.js"></script>
+        <script src="jquery.swipr.js"></script>
+        
+        <script type="text/javascript">
+            $(function(){
+                'use strict';
+                var swipr = $('.swipr').swipr({orientation:'horizontal'});
+
+                swipr.on(swipr.AFTER_MOVE, function(evt, data){
+                    console.log('index:'+data.index);
+                });
+
+                swipr.on('scroll', function(){
+                    console.log('message');
+                    
+                });
+                
+                var options = {
+                  dragLockToAxis: true,
+                  dragBlockHorizontal: true
+                };
+                var hammer = new Hammer($('.swipr-window')[0], options);
+                hammer.on('dragleft swipeleft', function(ev) {
+                    swipr.moveToNext();
+                });
+
+                hammer.on('swiperight dragright', function(ev) {
+                    swipr.moveToPrev();
+                });
+
+
+           
+            })
+            
+        </script>
+
+</body>
+</html>
