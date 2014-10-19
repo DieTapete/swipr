@@ -40,36 +40,38 @@
       	}
 
       	function resize(){
-      		swiprWidth = t.outerWidth();
-      		swiprHeight = t.outerHeight();
+      		swiprWidth = t.width();
+      		swiprHeight = t.height();
 
       		$children.each(function(){
-      			$(this).width(swiprWidth);
-      			$(this).height(swiprHeight);
+      			var $this = $(this);
+      			$this.width(swiprWidth);
+      			$this.height(swiprHeight);
       		});
       	}
 
       	function init(){
       		reload();
-      		
-      		$container.wrap('<div class="'+NAME+'-window"></div>').
-	      	css('width', '100000px');
 
-	      	$container.parent().css({width:swiprWidth+'px', height:swiprHeight+'px'});
+      		$container.wrap('<div class="'+NAME+'-window"></div>')
+	      	.css({width:'100%', height:'100%'});
+
+	      	// $container.parent().css({width:swiprWidth+'px', height:swiprHeight+'px'});
 			
 			//TODO: Add Vertical Mode
 			$children.each(function(i) {
 			   $(this).addClass(NAME+'-slide')
-			   .attr('data-index', i)
-			   .attr('draggable', 'false');
+			   // .attr('data-index', i)
+			   .attr('draggable', 'false')
+			   .css('visibility', 'hidden')
+			   // .css('display', 'none');
 			});
 
-			$container.empty();
+			// $container.empty();
 
 			addSlide($currentSlide);
-
 			//Bind events
-			$(window).resize(resize);
+			$(window).resize(function(){resize();});
       	}
 
       	
@@ -100,6 +102,7 @@
 
 			var direction = (index < currentIndex) ? -1:1;
 			if ($currentSlide){
+				$currentSlide.removeClass('active');
 				leaveSlide($currentSlide, direction, animated);
 			}
 			var $slide = $($children.get(index));
@@ -128,6 +131,7 @@
 
 				$slide.css(from);
 				TweenLite.to($slide, settings.slideDuration, to);
+				// $slide.css(to);
 			}
 			//No Animation, just set the slide to its position immediately
 			else{
@@ -137,7 +141,8 @@
 		}
 
 		function removeSlide($slide){
-			$slide.remove();
+			// $slide.css('display', 'none');
+			$slide.css('visibility', 'hidden');
 			$currentSlide = null;
 		}
 
@@ -160,8 +165,10 @@
 		}
 
 		function addSlide($slide){
-			$container.append($slide);
+			$slide.css('visibility', 'visible');
+			// $slide.css('display', 'block');
 			$currentSlide = $slide;
+			$currentSlide.addClass('active');
 		}
 
 		function callSlide($slide, direction, animated, onComplete){
@@ -182,4 +189,4 @@
 		return t;
 	};
 
-}($)
+}($);

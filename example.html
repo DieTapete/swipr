@@ -35,7 +35,7 @@
         <script type="text/javascript">
             $(function(){
                 'use strict';
-                var swipr = $('.swipr').swipr({orientation:'horizontal'});
+                var swipr = $('.swipr').swipr({orientation:'vertical'});
 
                 swipr.on(swipr.AFTER_MOVE, function(evt, data){
                     console.log('index:'+data.index);
@@ -47,8 +47,8 @@
                 });
                 
                 var options = {
-                  dragLockToAxis: true,
-                  dragBlockHorizontal: true
+                  // dragLockToAxis: true,
+                  // dragBlockHorizontal: true
                 };
                 var hammer = new Hammer($('.swipr-window')[0], options);
                 hammer.on('dragleft swipeleft', function(ev) {
@@ -59,6 +59,26 @@
                     swipr.moveToPrev();
                 });
 
+                $(window).keydown(function(e){
+                    switch(e.which){
+                        case 37: // left
+                        break;
+
+                        case 38: // up
+                            swipr.moveToPrev();
+                        break;
+
+                        case 39: // right
+                        break;
+
+                        case 40: // down
+                            swipr.moveToNext();
+                        break;
+
+                        default: return;
+                    }
+                    e.preventDefault();
+                })
 
            
             })
