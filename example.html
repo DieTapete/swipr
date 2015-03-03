@@ -42,7 +42,6 @@
                 });
 
                 swipr.on('scroll', function(){
-                    console.log('message');
                     
                 });
                 
@@ -50,7 +49,7 @@
                   // dragLockToAxis: true,
                   // dragBlockHorizontal: true
                 };
-                var hammer = new Hammer($('.swipr-window')[0], options);
+                var hammer = new Hammer($('.swipr')[0], options);
                 hammer.on('dragleft swipeleft', function(ev) {
                     swipr.moveToNext();
                 });

@@ -13,14 +13,27 @@ See example.html for a full working example.
 ##Installation
 	bower install swipr
 
+##Options
+	var defaults = {
+		orientation: HORIZONTAL,
+		childSelector: '',
+		loop: false,
+		slideDuration: 0.5,
+		usePaginator: true
+	};
+
 ##Methods
 - goto
 - gotoNext
 - gotoPrev
+- gotoEnd
+- gotoStart
 
 - moveTo
 - moveToNext
 - moveToPrev
+- moveToEnd
+- moveToStart
 
 ##Events
 - beforeMove
